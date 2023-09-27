@@ -1,24 +1,61 @@
-﻿namespace ÖvningPocedex
+﻿namespace ÖvningPocedex;
+
+internal class Pokemon
 {
-    public class Pokemon
+    int _currentForm;
+    string _type;
+    List<string> _allNames;
+
+    public Pokemon(int currentForm, string type, List<string> allNames)
     {
-        string _pokemonName;
-        string _pokemonPower;
-        int _totalforms = 3;
-        int _currentform = 1;
+        _currentForm = currentForm;
+        _type = type;
+        _allNames = allNames;
+    }
 
-        public Pokemon(string pokemonName, string pokemonPower, int totalforms, int currentform)
+    public int GetCurrentForm()
+    {
+        return _currentForm;
+    }
+
+    public string GetType()
+    {
+        return _type;
+    }
+
+    public List<string> GetAllNames()
+    {
+        return _allNames;
+    }
+
+    public int GetMaxEvolutions()
+    {
+        return _allNames.Count();
+    }
+
+    public bool Evolve()
+    {
+        if (_currentForm < GetMaxEvolutions())
         {
-            _pokemonName = pokemonName;
-            _pokemonPower = pokemonPower;
-            _totalforms = totalforms;
-            _currentform = currentform;
+            _currentForm++;
+
+            return true;
         }
-
-        public string GetPokemonInfo()
+        else
         {
-            return $"Name: {_pokemonName} - Power: {_pokemonPower}";
-
+            return false;
         }
     }
+
+    public string GetCurrentName()
+    {
+        return _allNames[_currentForm - 1];
+    }
+
+    public string GetInfo()
+    {
+        // Returnera en sträng med pokemonens nuvarande namn, och dess evolution
+        return $"{_allNames[_currentForm - 1]} is a {_type} type Pokemon - Evolution: {_currentForm}/{GetMaxEvolutions()} ";
+    }
+
 }
