@@ -239,6 +239,7 @@ while (isRunning)
         case "D":
             {
                 // Display pokemon
+
                 DisplayPokemons();
 
                 break;
@@ -247,6 +248,38 @@ while (isRunning)
         case "E":
             {
                 // Evolve pokemon
+
+                DisplayPokemons();
+
+                Console.WriteLine("What Pokemon do you want to evolve?");
+                Console.Write("Pokemon name: ");
+                string pokemonName = Console.ReadLine();
+
+                bool isFoundPokemon = false;
+
+                for (int i = 0; i < allPokemons.Count(); i++)
+                {
+                    if (pokemonName.ToLower() == allPokemons[i].GetCurrentName().ToLower())
+                    {
+                        // TODO: Handle pokemon couldnt evolve by using the returned bool below
+                        bool isSuccessfullyEvolved = allPokemons[i].Evolve();
+
+                        isFoundPokemon = true;
+                    }
+                }
+
+                if (!isFoundPokemon)
+                {
+                    Console.WriteLine("No pokemon found!");
+                    Console.WriteLine("Try again!");
+                }
+                else
+                {
+                    Console.WriteLine("Pokemon evolved successfully!");
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
                 break;
             }
     }
